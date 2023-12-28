@@ -1,0 +1,232 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+
+
+<!-- Modal Términos -->
+<div class="modal fade" id="modalTerminos" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Términos</h5>
+            </div>
+            <div class="modal-body">
+                <!-- Contenido del modal -->
+                Acá van los terminos
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% if user.is_authenticated %}
+
+<!-- Modal Ya Registrado -->
+<div class="modal fade" id="regismodal" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Atención</h5>
+            </div>
+            <div class="modal-body">
+                <!-- Contenido del modal -->
+                El usuario ya se encuentra registrado en el sistema.
+            </div>
+            <div class="modal-footer">
+                <!-- Botón para cerrar sesión -->
+                <a href="{% url 'logout' %}" class="btn btn-warning mr-auto">Cerrar Sesión</a>
+                <!-- Botón para redireccionar a la URL 'home' -->
+                <button type="button" class="btn btn-primary"
+                    onclick="window.location.href = '{% url 'home' %}'">Entendido</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% else %}
+
+<div class="container mt-3">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+            <div class="card">
+                <div class="card-body">
+                    <!-- <img src="{% static 'images/logo-text.png' %}" alt="UPN Logo Text" class="img-fluid mx-auto d-block" style="max-width: 70%;"> -->
+
+                    <div class="card-header text-center">
+                        <a href="{% url 'home' %}" class="h5"><b>Sistema Información Egresados</b><br><br>
+                            <h5>Registro Administrativos</h5>
+                        </a>
+                    </div>
+
+                    <form action="{% url 'registro-administrativo' %}" method="post" class="px-4">
+                        {% csrf_token %}
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            {% if message.tags == 'error' %}
+                            <li class="error-message">
+                                <i class="fas fa-exclamation-circle" style="color: red;"></i>
+                                <!-- Icono de Font Awesome de error -->
+                                <span style="color: red;">{{ message }}</span>
+                            </li>
+                            {% endif %}
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+            
+                        <div class=" input-group mb-3">
+                            {{ registerForm.username|add_class:"form-control"|attr:"placeholder: Nombre de usuario*" }}
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user-circle"></span>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class=" input-group mb-3">
+                            {{ registerForm.nombres|add_class:"form-control"|attr:"placeholder:Nombres*" }}
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class=" input-group mb-3">
+                            {{ registerForm.primer_apellido|add_class:"form-control"|attr:"placeholder:Primer Apellido*" }}
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class=" input-group mb-3">
+                            {{ registerForm.segundo_apellido|add_class:"form-control"|attr:"placeholder:Segundo Apellido" }}
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-user"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class=" input-group mb-3">
+                            {{ registerForm.tipo_doc|add_class:"form-control"|attr:"placeholder:Tipo Documento *" }}
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-id-card"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class=" input-group mb-3">
+                            {{ registerForm.documento|add_class:"form-control"|attr:"placeholder:Documento *" }}
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-id-card"></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="input-group mb-3">
+                            {{ registerForm.email|add_class:"form-control"|attr:"placeholder:Correo Electrónico Institucional*" }}
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class=" input-group mb-3">
+                          {{ registerForm.tipo_administrativo|add_class:"form-control"|attr:"placeholder:Tipo Funcionario " }}
+                          <div class="input-group-append">
+                              <div class="input-group-text">
+                                  <span class="fas fa-id-card"></span>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class=" input-group mb-3">
+                        {{ registerForm.facultad_administrativo|add_class:"form-control"|attr:"placeholder:Facultad " }}
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-id-card"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="input-group mb-3">
+                            {{ registerForm.password1|add_class:"form-control"|attr:"placeholder:Contraseña" }}
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+            
+                        <div class="input-group mb-3">
+                            {{ registerForm.password2|add_class:"form-control"|attr:"placeholder:Confirmar Contraseña" }}
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-lock"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-8">
+                                <div class="icheck-primary">
+                                    {{ registerForm.terminos }}
+                                    <label for="id_terminos">
+                                        Acepto los <a data-target="#modal-primary" id="enlaceTerminos">términos</a>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-4 text-right">
+                                <button type="submit" class="btn btn-primary btn-block"><b>Registrar</b></button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <p class="mb-1 text-center">
+                        <a href="{% url 'login' %}">Soy usuario Registrado</a>
+                    </p>
+                    <p class="mb-1 text-center">
+                        <a href="{% url 'registro-egresado' %}">Registro Egresados</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var myModal = new bootstrap.Modal(document.getElementById('regismodal'), {
+            backdrop: 'static' // Establecer el backdrop estático al inicializar el modal
+        });
+        myModal.show(); // Muestra automáticamente el modal al cargar la página
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#enlaceTerminos').on('click', function (e) {
+            e.preventDefault(); // Evita que el enlace redireccione
+            $('#modalTerminos').modal('show'); // Muestra el modal correspondiente
+        });
+    });
+</script>
+
+
+{% endblock %}

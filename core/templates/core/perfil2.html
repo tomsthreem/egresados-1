@@ -1,0 +1,107 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Default box -->
+
+
+<div class="col-md-7 mx-auto">
+
+  <div class="card card-widget widget-user-2">
+
+    <div class="widget-user-header bg-warning">
+      <div class="widget-user-image">
+        {% if user.es_egresado %}
+        <img class="img-circle elevation-2" src="{% static 'images/graduate.png' %}" alt="User Avatar">
+        {% elif user.es_administrativo %}
+        <img class="img-circle elevation-2" src="{% static 'images/admin.png' %}" alt="User Avatar">
+        {% endif %}
+      </div>
+
+      <h3 class="widget-user-username">{{ usuario.first_name }} {{ usuario.last_name }}</h3>
+      <h5 class="widget-user-desc">{{ usuario.email }}</h5>
+      <h7 class="widget-user-desc"> Rol: {% if user.es_egresado %}Egresado{% else %}Administrativo{% endif %}</h7>
+    </div>
+    <div class="card-footer p-0">
+      <ul class="nav flex-column">
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            Trayectoria UPN
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            Información Adicional
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            Última Conexión
+          </a>
+        </li>
+        <!-- Agrega más elementos de menú aquí -->
+      </ul>
+    </div>
+    </nav>
+
+    </ul>
+  </div>
+</div>
+
+</div>
+
+
+
+{% endblock %}
+
+
+<style>
+  .custom-card-width {
+    margin: 0 auto;
+    /* Centra el card en la página */
+    max-width: 75%;
+    /* Ajusta al 75% del ancho disponible, modifica según sea necesario */
+  }
+</style>
+<div class="card card-widget widget-user-2">
+
+  <div class="widget-user-header bg-warning">
+    <div class="widget-user-image">
+      {% if user.es_egresado %}
+      <img class="img-circle elevation-2" src="{% static 'images/graduate.png' %}" alt="User Avatar">
+      {% elif user.es_administrativo %}
+      <img class="img-circle elevation-2" src="{% static 'images/admin.png' %}" alt="User Avatar">
+      {% endif %}
+    </div>
+
+    <h3 class="widget-user-username">{{ usuario.first_name }} {{ usuario.last_name }}</h3>
+
+    <h6 class="widget-user-desc">{{ usuario.email }}</h6>
+
+  </div>
+  <div class="card-footer p-0">
+    <ul class="nav flex-column">
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          Projects <span class="float-right badge bg-primary">31</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          Tasks <span class="float-right badge bg-info">5</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          Completed Projects <span class="float-right badge bg-success">12</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">
+          Followers <span class="float-right badge bg-danger">842</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+</div>

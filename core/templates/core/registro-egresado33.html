@@ -1,0 +1,200 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+
+
+<!-- Modal Términos -->
+<div class="modal fade" id="modalTerminos" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Términos</h5>
+      </div>
+      <div class="modal-body">
+        <!-- Contenido del modal -->
+        Acá van los terminos
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% if user.is_authenticated %}
+
+<!-- Modal Ya Registrado -->
+<div class="modal fade" id="regismodal" data-backdrop="static" tabindex="-1" role="dialog"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Atención</h5>
+      </div>
+      <div class="modal-body">
+        <!-- Contenido del modal -->
+        El usuario ya se encuentra registrado en el sistema.
+      </div>
+      <div class="modal-footer">
+        <!-- Botón para cerrar sesión -->
+        <a href="{% url 'logout' %}" class="btn btn-warning mr-auto">Cerrar Sesión</a>
+        <!-- Botón para redireccionar a la URL 'home' -->
+        <button type="button" class="btn btn-primary"
+          onclick="window.location.href = '{% url 'home' %}'">Entendido</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% else %}
+
+<!-- Default box -->
+<div class="card d-flex justify-content-center align-items-center">
+  <div class="card-header ">
+  </div>
+  <div class="card-body">
+
+    <body class="hold-transition login-page d-flex justify-content-center align-items-center">
+      <div class="login-box">
+        <!-- /.login-logo -->
+        <div class="card card-outline card-primary">
+          <img src="{% static 'images/logo-text.png' %}" alt="UPN Logo Text">
+          <div class="card-header text-center">
+            <a href="{% url 'home' %}" class="h5"><b> Sistema Información Egresados </b><br><br>
+              <h5>Registro Egresados</h5>
+            </a>
+          </div>
+          <div class="card-body">
+            <div class="card">
+              <div class="card-body register-card-body">
+                <form action="{% url 'registro-egresado' %}" method="post">
+                  {% csrf_token %}
+
+                  {% if messages %}
+                  <ul class="messages">
+                    {% for message in messages %}
+                    {% if message.tags == 'error' %}
+                    <li class="error-message">
+                      <i class="fas fa-exclamation-circle" style="color: red;"></i>
+                      <!-- Icono de Font Awesome de error -->
+                      <span style="color: red;">{{ message }}</span>
+                    </li>
+                    {% endif %}
+                    {% endfor %}
+                  </ul>
+                  {% endif %}
+
+                  <div class=" input-group mb-3">
+                    {{ registerForm.username|add_class:"form-control"|attr:"placeholder: Nombre de usuario" }}
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <span class="fas fa-user-circle"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class=" input-group mb-3">
+                    {{ registerForm.nom|add_class:"form-control"|attr:"placeholder:Nombres" }}
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <span class="fas fa-user"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="input-group mb-3">
+                    {{ registerForm.last_name|add_class:"form-control"|attr:"placeholder:Apellidos" }}
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <span class="fas fa-user"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="input-group mb-3">
+                    {{ registerForm.email|add_class:"form-control"|attr:"placeholder:Correo Electrónico" }}
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <span class="fas fa-envelope"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="input-group mb-3">
+                    {{ registerForm.password1|add_class:"form-control"|attr:"placeholder:Contraseña" }}
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="input-group mb-3">
+                    {{ registerForm.password2|add_class:"form-control"|attr:"placeholder:Confirmar Contraseña" }}
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <span class="fas fa-lock"></span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-8">
+                      <div class="icheck-primary">
+                        {{ registerForm.terminos }}
+                        <label for="id_terminos">
+                          Acepto los <a data-target="#modal-primary" id="enlaceTerminos">términos</a>
+                        </label>
+                      </div>
+                    </div>
+                    <br><br>
+                    <button type="submit" class="btn btn-primary btn-block"><b>Registrar</b></button>
+                  </div>
+                </form>
+
+                <br>
+                <p class="mb-1 text-center">
+                  <a href="{% url 'login' %}">Soy usuario Registrado</a>
+                </p>
+                <p class="mb-1 text-center">
+                  <a href="">Registro Administrativos</a>
+                </p>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.login-box -->
+
+    </body>
+
+  </div>
+</div>
+<!-- /.card -->
+
+{% endif %}
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var myModal = new bootstrap.Modal(document.getElementById('regismodal'), {
+      backdrop: 'static' // Establecer el backdrop estático al inicializar el modal
+    });
+    myModal.show(); // Muestra automáticamente el modal al cargar la página
+  });
+</script>
+
+<script>
+  $(document).ready(function () {
+    $('#enlaceTerminos').on('click', function (e) {
+      e.preventDefault(); // Evita que el enlace redireccione
+      $('#modalTerminos').modal('show'); // Muestra el modal correspondiente
+    });
+  });
+</script>
+
+
+{% endblock %}

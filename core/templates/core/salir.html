@@ -1,0 +1,34 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+<!-- Default box -->
+<div class="card">
+
+    <div class="card-body">
+        {% if user.is_authenticated %}
+        <!-- Aca va las cards a mostrar  -->
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+                <h4 class="m-0">¿ Desea cerrar sesión?</h4>
+            </div>
+            <div class="card-body">
+                <a href="{% url 'home' %}" class="btn btn-warning mr-2"><i class="fa fa-sign-out""></i> Cerrar Sesión</a>
+
+                </div>
+                
+              </div>
+        {% else %}
+                <!-- Aca va las cards a mostrar  -->
+                <div class="card-header">
+                    <h4 class="m-0">Ha cerrado sesión correctamente</h4>
+                </div>
+                <div class="card-body">
+                    <a href="{% url 'home' %}" class="btn btn-success mr-2"><i class="fa fa-home""></i>  Volver a Inicio</a>
+                </div>
+            <!-- /.card-body -->
+        {% endif %}
+
+
+          </div>
+{% endblock content %}

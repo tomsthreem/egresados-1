@@ -1,0 +1,40 @@
+{% load static %}
+
+<!-- Default box -->
+
+  <style>
+    .centrado {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  </style>
+  {% if user.is_authenticated %}
+  <script type="text/javascript">
+    window.location.href = "{% url 'perfil' user.id %}";
+</script>
+  {% else%}
+  <div class="card-body">
+    <!-- Aca va las cards a mostrar  -->
+    <div class="card card-primary card-outline">
+      <div class="card-header">
+        <h4 class="m-0">Bienvenido</h4>
+      </div>
+      <div class="card-body centrado">
+        <img src="{% static 'images/logo-blue.png' %}" alt="Logo" style="max-width: 250px; margin-bottom: 30px; margin-left: -10px; ">        
+        
+        <h2 class="card-title" style="font-weight: bold; color: rgb(37, 150, 190);">Este es el módulo de pruebas del Sistema de Información de Egresados</h2>
+        <br>
+        <div>
+          <a href="{% url 'login' %}" class="btn btn-success mr-2"><i class="fas fa-sign-in-alt"></i> Iniciar Sesión</a>
+          <a href="{% url 'registro-egresado' %}" class="btn btn-primary mr-2"><i class="fas fa-user-plus"></i> Registro Egresados</a>
+          <a href="{% url 'registro-administrativo' %}" class="btn btn-info"><i class="fas fa-user-cog"></i> Registro Administrativos</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /.card-body -->
+  {% endif %}
+</div>
+<!-- /.card -->

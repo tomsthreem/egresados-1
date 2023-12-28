@@ -1,0 +1,206 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+
+<style>
+    .datepicker-container {
+        z-index: 1051;
+    }
+    /* Más estilos aquí si es necesario */
+</style>
+
+<!-- Default box -->
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-9"> <!-- Ajusta el ancho aquí según tus necesidades -->
+            <div class="card">
+                <div class="card-body box-profile">
+                    <div class="d-flex align-items-start">
+                        <div>
+                            <a class="btn btn-success mr-2" data-toggle="modal" data-target="#personalDataModal"><i
+                                    class="fas fa-sign-in-alt"></i> Editar II </a>                                   
+                        </div>                     
+                    </div>
+                    </ul>
+                </div>
+                <!-- /.card-body -->
+<!-- Fecha de Nacimiento -->
+<div class="form-group">
+    <label for="id_documento">Fecha Nacimiento</label>
+    <div class="input-group date" id="reservationdate" data-target-input="nearest">
+        <input type="text" id="datemask" class="form-control datetimepicker-input" 
+               data-target="#reservationdate" 
+               readonly 
+               placeholder="dd/mm/yyyy"/>
+        <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+        </div>
+    </div>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="personalDataModal" role="dialog">
+    <div class="modal-dialog modal-lg"> <!-- Aquí se hace el modal más ancho -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <b>
+                    <h6 class="modal-title">Formulario Datos Personales</h6>
+                </b>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{% url 'info-basica' usuario.id %}">
+                    {% csrf_token %}
+                    <div class="card-body">
+                        <!-- Nombres -->
+                        <label for="id_nombres">Nombres</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            </div>
+                            {{ form.nombres }}
+                        </div>
+                        <!-- Apellidos -->
+                        <label for="id_apellidos">Apellidos</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            </div>
+                            {{ form.apellidos }}
+                        </div>
+                        <!-- Documento -->
+                        <label for="id_documento">Documento</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-id-card"></i></span>
+                            </div>
+                            {{ form.documento }}
+                        </div>
+                        <!-- Fecha de Nacimiento -->
+                        <div class="form-group">
+                            <label for="id_documento">Fecha de Nacimiento </label>
+                              <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                  <input type="text" class="form-control datetimepicker-input" data-target="#reservationdate" readonly placeholder="Presione botón"/>
+                                  <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                      <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                  </div>
+                              </div>
+                          </div>
+                        <!-- Correo Personal -->
+                        <label for="id_correo_personal">Correo Personal</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                            </div>
+                            {{ form.correo_personal }}
+                        </div>
+                        <!-- Correo Alternativo -->
+                        <label for="id_correo_alternativo">Correo Alternativo</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-envelope-open"></i></span>
+                            </div>
+                            {{ form.correo_alternativo }}
+                        </div>
+                        <!-- Correo Institucional -->
+                        <label for="id_correo_institucional">Correo Institucional</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-university"></i></span>
+                            </div>
+                            {{ form.correo_institucional }}
+                        </div>
+                        <!-- Dirección de Residencia -->
+                        <label for="id_direccion_residencia">Dirección de Residencia</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-home"></i></span>
+                            </div>
+                            {{ form.direccion_residencia }}
+                        </div>
+                        <!-- Barrio -->
+                        <label for="id_barrio">Barrio</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-building"></i></span>
+                            </div>
+                            {{ form.barrio }}
+                        </div>
+                        <!-- Ciudad -->
+                        <label for="id_ciudad">Ciudad</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-city"></i></span>
+                            </div>
+                            {{ form.ciudad }}
+                        </div>
+                        <!-- País -->
+                        <label for="id_pais">País</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-flag"></i></span>
+                            </div>
+                            {{ form.pais }}
+                        </div>
+                        <!-- Teléfono Móvil -->
+                        <label for="id_telefono_movil">Teléfono Móvil</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-mobile-alt"></i></span>
+                            </div>
+                            {{ form.telefono_movil }}
+                        </div>
+                        <!-- Teléfono Alternativo -->
+                        <label for="id_telefono_alternativo">Teléfono Alternativo</label>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                            </div>
+                            {{ form.telefono_alternativo }}
+                        </div>
+                        <!-- Botón de envío -->
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <div class="text-right"> <!-- Alineación a la derecha para el botón de envío -->
+                            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+<script>
+
+    $(document).ready(function() {
+        $('#personalDataModal').on('shown.bs.modal', function () {
+            $('#reservationdate').datetimepicker({
+                format: 'L'
+            });
+        });
+    });
+
+
+    $(document).ready(function(){
+    // Aplicar Inputmask a tu campo de datepicker
+    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' });
+
+    // Inicializar el datepicker
+    $('#reservationdate').datetimepicker({
+        format: 'L'
+        // ... otras opciones de configuración si son necesarias
+    });
+});
+    </script>
+
+    
+
+
+{% endblock %}

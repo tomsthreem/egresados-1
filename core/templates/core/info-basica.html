@@ -1,0 +1,365 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+
+<style>
+    .datepicker-container {
+        z-index: 1051;
+    }
+
+    .error-field {
+    border: 2px solid red; /* o cualquier estilo que prefieras */
+}
+}
+
+</style>
+<form method="post" action="{% url 'info-basica' usuario.id %}">
+
+    
+    {% csrf_token %}
+    {% if form.non_field_errors %}
+        <div class="alert alert-danger">
+            {% for error in form.non_field_errors %}
+            <div class="alert alert-danger">
+                {{ error.as_text }}
+            </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+    <!-- Fila para dividir en dos columnas -->
+    <div class="row">
+        <!-- Columna Izquierda -->
+        <div class="col-md-6">
+            <!-- Nombres -->
+            <label for="id_nombres">Nombres*</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                </div>
+                {{ form.nombres }}
+            </div>
+
+            <!-- Segundo Apellido -->
+            <label for="id_segundo_apellido">Segundo Apellido</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                </div>
+                {{ form.segundo_apellido }}
+            </div>
+
+            <!-- Sexo -->
+            <div class="form-group">
+                <label for="id_sexo">Sexo</label>
+                <select name="sexo" id="id_sexo" class="form-control">
+                    {% for value, text in form.sexo.field.choices %}
+                        <option value="{{ value }}"{% if form.sexo.value == value %} selected{% endif %}>{{ text }}</option>
+                    {% endfor %}
+                </select>
+                {% if form.sexo.errors %}
+                    <div class="alert alert-danger">
+                        {{ form.sexo.errors.as_text }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Grupo Étnico -->
+            <div class="form-group">
+                <label for="id_grupo_etnico">Grupo Étnico</label>
+                <select name="grupo_etnico" id="id_grupo_etnico" class="form-control">
+                    {% for value, text in form.grupo_etnico.field.choices %}
+                        <option value="{{ value }}"{% if form.grupo_etnico.value == value %} selected{% endif %}>{{ text }}</option>
+                    {% endfor %}
+                </select>
+                {% if form.grupo_etnico.errors %}
+                    <div class="alert alert-danger">
+                        {{ form.grupo_etnico.errors.as_text }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- País de Residencia -->
+            <div class="form-group">
+                <label for="id_pais_res">País de Residencia</label>
+                <select name="pais_res" id="id_pais_res" class="form-control">
+                    {% for value, text in form.pais_res.field.choices %}
+                        <option value="{{ value }}"{% if form.pais_res.value == value %} selected{% endif %}>{{ text }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Municipio de Residencia -->
+            <div class="form-group" id="municipio_residencia">
+                <label for="id_mun_res">Municipio de Residencia</label>
+                <select name="mun_res" id="id_mun_res" class="form-control">
+                    {% for value, text in form.mun_res.field.choices %}
+                        <option value="{{ value }}"{% if form.mun_res.value == value %} selected{% endif %}>{{ text }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- País de Nacimiento -->
+            <div class="form-group">
+                <label for="id_pais_nacimiento">País de Nacimiento*</label>
+                <select name="pais_nacimiento" id="id_pais_nacimiento" class="form-control">
+                    {% for value, text in form.pais_nacimiento.field.choices %}
+                        <option value="{{ value }}"{% if form.pais_nacimiento.value == value %} selected{% endif %}>{{ text }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Municipio de Nacimiento -->
+            <div class="form-group" id="municipio_nacimiento">
+                <label for="id_mun_nacimiento">Municipio de Nacimiento</label>
+                <select name="mun_nacimiento" id="id_mun_nacimiento" class="form-control">
+                    {% for value, text in form.mun_nacimiento.field.choices %}
+                        <option value="{{ value }}"{% if form.mun_nacimiento.value == value %} selected{% endif %}>{{ text }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Correo -->
+            <label for="id_correo_alternativo">Correo* </label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-envelope-open"></i></span>
+                </div>
+                {{ form.correo }}
+            </div>
+
+            <!-- Teléfono Principal -->
+            <label for="id_telefono_principal">Teléfono Principal</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                </div>
+                {{ form.telefono_principal }}
+            </div>
+        </div>
+
+        <!-- Columna Derecha -->
+        <div class="col-md-6">
+            <!-- Primer Apellido -->
+            <label for="id_primer_apellido">Primer Apellido*</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-user"></i></span>
+                </div>
+                {{ form.primer_apellido }}
+            </div>
+
+            <!-- Documento -->
+            <label for="id_documento">Documento*</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-id-card"></i></span>
+                </div>
+                {{ form.documento }}
+            </div>
+
+            <!-- Estado Civil -->
+            <div class="form-group">
+                <label for="id_estado_civil">Estado Civil*</label>
+                <select name="estado_civil" id="id_estado_civil" class="form-control">
+                    {% for value, text in form.estado_civil.field.choices %}
+                        <option value="{{ value }}"{% if form.estado_civil.value == value %} selected{% endif %}>{{ text }}</option>
+                    {% endfor %}
+                </select>
+                {% if form.estado_civil.errors %}
+                <div class="alert alert-danger">
+                    {{ form.estado_civil.errors.as_text }}
+                </div>
+                {% endif %}
+            </div>
+
+            <!-- Discapacidad -->
+            <div class="form-group">
+                <label for="id_discapacidad">Discapacidad</label>
+                <select name="discapacidad" id="id_discapacidad" class="form-control">
+                    {% for value, text in form.discapacidad.field.choices %}
+                        <option value="{{ value }}"{% if form.discapacidad.value == value %} selected{% endif %}>{{ text }}</option>
+                    {% endfor %}
+                </select>
+                {% if form.discapacidad.errors %}
+                    <div class="alert alert-danger">
+                        {{ form.discapacidad.errors.as_text }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Departamento de Residencia -->
+            <div class="form-group" id="departamento_residencia">
+                <label for="id_depa_res">Departamento de Residencia</label>
+                <select name="depa_res" id="id_depa_res" class="form-control">
+                    {% for value, text in form.depa_res.field.choices %}
+                        <option value="{{ value }}"{% if form.depa_res.value == value %} selected{% endif %}>{{ text }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Dirección de Residencia -->
+            <label for="id_direccion_residencia">Dirección de Residencia</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-home"></i></span>
+                </div>
+                {{ form.direccion_residencia }}
+            </div>
+
+            <!-- Departamento de Nacimiento -->
+            <div class="form-group" id="departamento_nacimiento">
+                <label for="id_depa_nacimiento">Departamento de Nacimiento</label>
+                <select name="depa_nacimiento" id="id_depa_nacimiento" class="form-control">
+                    {% for value, text in form.depa_nacimiento.field.choices %}
+                        <option value="{{ value }}"{% if form.depa_nacimiento.value == value %} selected{% endif %}>{{ text }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <!-- Fecha de Nacimiento -->
+            <label for="id_fecha_nacimiento">Fecha de Nacimiento</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                </div>
+                {{ form.fecha_nacimiento }}
+                {% if form.fecha_nacimiento.errors %}
+                    <div class="alert alert-danger">
+                        {{ form.fecha_nacimiento.errors.as_text }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Correo Alternativo -->
+            <label for="id_correo_alternativo">Correo Alternativo</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-envelope-open"></i></span>
+                </div>
+                {{ form.correo_alternativo }}
+            </div>
+
+            <!-- Teléfono Alternativo -->
+            <label for="id_telefono_alternativo">Teléfono Alternativo</label>
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fa fa-phone"></i></span>
+                </div>
+                {{ form.telefono_alternativo }}
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer justify-content-between">
+        <div class="text-right">
+            <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+        </div>
+    </div>
+
+</form>
+
+<!-- Modal correcto -->
+<div class="modal fade" id="successModal" data-backdrop="static" tabindex="-1" role="dialog"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Atención</h5>
+            </div>
+            <div class="modal-body">
+                <!-- Contenido del modal -->
+                Información Actualizada Correctamente.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary"
+                    onclick="window.location.href = '{% url 'info-basica' usuario.id %}'">Entendido</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Error -->
+<div class="modal fade" id="errorModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="errorModalLabel">Error</h5>
+            </div>
+            <div class="modal-body">
+                Faltan campos obligatorios por rellenar.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card-body">
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Función para habilitar o deshabilitar campos de departamento y municipio según la selección del país
+        function toggleCamposPorPais() {
+            var paisNacimiento = $('#id_pais_nacimiento').val();
+            var paisResidencia = $('#id_pais_res').val();
+
+            // Departamento y municipio de nacimiento
+            if (paisNacimiento === 'Colombia') {
+                $('#departamento_nacimiento select, #municipio_nacimiento select').prop('disabled', false);
+            } else {
+                $('#departamento_nacimiento select, #municipio_nacimiento select').prop('disabled', true);
+            }
+
+            // Departamento y municipio de residencia
+            if (paisResidencia === 'Colombia') {
+                $('#departamento_residencia select, #municipio_residencia select').prop('disabled', false);
+            } else {
+                $('#departamento_residencia select, #municipio_residencia select').prop('disabled', true);
+            }
+        }
+
+        // Ejecutar la función al cargar la página y cuando cambie la selección
+        toggleCamposPorPais();
+        $('#id_pais_nacimiento, #id_pais_res').change(toggleCamposPorPais);
+
+
+    });
+    
+</script>
+
+{% if form_saved %}
+    <script>
+        $(document).ready(function () {
+            $('#successModal').modal('show');
+        });
+    </script>
+{% endif %}
+
+<!-- {% if form_errors %}
+    <script>
+        $(document).ready(function () {
+            $('#errorModal').modal('show');
+        });
+    </script>
+{% endif %} -->
+
+<script>
+    $(document).ready(function() {
+        {% if form.errors %}
+            {% for field in form %}
+                {% if field.errors %}
+                    $('#{{ field.auto_id }}').addClass('error');
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    });
+</script>
+
+{% endblock %}
+

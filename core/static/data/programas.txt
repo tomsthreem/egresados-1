@@ -1,0 +1,35 @@
+Facultad de Bellas Artes, Licenciatura, Licenciatura en Música, Licenciado(a) en Música
+Facultad de Bellas Artes, Licenciatura, Licenciatura en Artes Escénicas, Licenciado(a) en Artes Escénicas
+Facultad de Bellas Artes, Licenciatura, Licenciatura en Artes Visuales, Licenciado(a) en Artes Visuales
+Facultad de Bellas Artes, Maestría, Maestría en Arte, Educación y Cultura, Magíster en Arte, Educación y Cultura
+Facultad de Ciencia y Tecnología, Licenciatura, Licenciatura en Biología, Licenciado(a) en Biología
+Facultad de Ciencia y Tecnología, Licenciatura, Licenciatura en Química, Licenciado(a) en Química
+Facultad de Ciencia y Tecnología, Licenciatura, Licenciatura en Matemáticas, Licenciado(a) en Matemáticas
+Facultad de Ciencia y Tecnología, Licenciatura, Licenciatura en Física, Licenciado(a) en Física
+Facultad de Ciencia y Tecnología, Licenciatura, Licenciatura en Diseño Tecnológico, Licenciado(a) en Diseño Tecnológico
+Facultad de Ciencia y Tecnología, Licenciatura, Licenciatura en Electrónica, Licenciado(a) en Electrónica
+Facultad de Ciencia y Tecnología, Licenciatura, Licenciatura en Tecnología, Licenciado(a) en Tecnología
+Facultad de Ciencia y Tecnología, Licenciatura, Licenciatura en Ciencias Naturales y Educación Ambiental, Licenciado(a) en Ciencias Naturales y Educación Ambiental
+Facultad de Ciencia y Tecnología, Maestría, Maestría en Docencia de la Química, Magíster en Docencia de la Química
+Facultad de Ciencia y Tecnología, Maestría, Maestría en Estudios Contemporáneos en Enseñanza de la Biología, Magíster en Estudios Contemporáneos en Enseñanza de la Biología
+Facultad de Ciencia y Tecnología, Maestría, Maestría en Docencia de la Matemática, Magíster en Docencia de la Matemática
+Facultad de Ciencia y Tecnología, Maestría, Maestría en Tecnologías de la Información Aplicadas a la Educación, Magíster en Tecnologías de la Información Aplicadas a la Educación
+Facultad de Ciencia y Tecnología, Maestría, Maestría en Docencia de las Ciencias Naturales, Magíster en Docencia de las Ciencias Naturales
+Facultad de Ciencia y Tecnología, Especializacion, Especialización en Docencia de las Ciencias para el nivel Básico, Especialista en Docencia de las Ciencias para el Nivel Básico
+Facultad de Educación, Licenciatura, Licenciatura en Educación Especial, Licenciado(a) en Educación Especial
+Facultad de Educación, Licenciatura, Licenciatura en Educación Infantil, Licenciado(a) en Educación Infantil
+Facultad de Educación, Licenciatura, Licenciatura en Educación Comunitaria, Licenciado(a) en Educación Comunitaria
+Facultad de Educación, Licenciatura, Licenciatura en Educación Básica Primaria, Licenciado(a) en Educación Básica Primaria
+Facultad de Educación, Licenciatura, Programa en Pedagogía, Licenciado(a) en Pedagogía
+Facultad de Educación, Maestría, Maestría en Desarrollo Educativo y Social (Convenio con CINDE), Magíster en Desarrollo Educativo y Social
+Facultad de Educación, Especializacion, Especialización en Pedagogía, Especialista en Pedagogía
+Facultad de Educación Física, Licenciatura, Licenciatura en Educación Física, Licenciado(a) en Educación Física
+Facultad de Educación Física, Licenciatura, Licenciatura en Deporte, Licenciado(a) en Deporte
+Facultad de Educación Física, Licenciatura, Licenciatura en Recreación, Licenciado(a) en Recreación
+Facultad de Educación Física, Maestría, Maestría en Ciencias del Deporte y la Actividad Física, Magíster en Ciencias del Deporte y la Actividad Física
+Facultad de Humanidades, Licenciatura, Licenciatura en Español e Inglés, Licenciado(a) en Español e Inglés
+Facultad de Humanidades, Licenciatura, Licenciatura en Español y Lenguas Extranjeras con énfasis en Inglés y Francés, Licenciado(a) en Español y Lenguas Extranjeras con énfasis en Inglés y Francés
+Facultad de Humanidades, Licenciatura, Licenciatura en Ciencias Sociales, Licenciado(a) en Ciencias Sociales
+Facultad de Humanidades, Licenciatura, Licenciatura en Filosofía, Licenciado(a) en Filosofía
+Facultad de Humanidades, Maestría, Maestría en Enseñanza de la Lengua Extranjera, Magíster en Enseñanza de la Lengua Extranjera
+Universidad Pedagógica, Doctorado, Doctorado en Educación, Doctor(a) en Educación 

@@ -1,0 +1,72 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load widget_tweaks %}
+{% block content %}
+
+<div class="card card-primary card-outline">
+    <div class="card-header">
+        <h5 class="m-0">Formación Académica</h5>
+    </div>
+
+<div class="card card-default">
+    <form method="post" action="{% url 'formacionUPN' %}">
+        {% csrf_token %}
+        <div class="row">
+            <!-- Columna Izquierda -->
+            <div class="col-md-6">
+                <!-- Tipo de Formación -->
+                <div class="form-group">
+                    <label for="id_tipo_formacion">Tipo de Formación*</label>
+                    {{ form.tipo_formacion|add_class:"form-control"|add_error_class:"error-field" }}
+                </div>
+    
+                <!-- Facultad -->
+                <div class="form-group">
+                    <label for="id_facultad">Facultad*</label>
+                    {{ form.facultad|add_class:"form-control"|add_error_class:"error-field" }}
+                </div>
+    
+                <!-- Programa -->
+                <div class="form-group">
+                    <label for="id_programa">Programa*</label>
+                    {{ form.programa|add_class:"form-control"|add_error_class:"error-field" }}
+                </div>
+            </div>
+    
+            <!-- Columna Derecha -->
+            <div class="col-md-6">
+   
+                <!-- Fecha de Inicio -->
+                <label for="id_fecha_inicio">Fecha de Inicio*</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                    </div>
+                    {{ form.fecha_inicio|add_class:"form-control datepicker"|add_error_class:"error-field" }}
+                </div>
+    
+                <!-- Fecha de Fin -->
+                <label for="id_fecha_fin">Fecha de Fin</label>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                    </div>
+                    {{ form.fecha_fin|add_class:"form-control datepicker"|add_error_class:"error-field" }}
+                </div>
+                <!-- Título Obtenido -->
+                <div class="form-group">
+                    <label for="id_titulo_obtenido">Título Obtenido*</label>
+                    {{ form.titulo_obtenido|add_class:"form-control"|add_error_class:"error-field" }}
+                </div>
+            </div>
+        </div>
+    
+        <div class="modal-footer justify-content-between">
+            <div class="text-right">
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
